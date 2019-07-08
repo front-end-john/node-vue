@@ -3,8 +3,10 @@ module.exports = {
     outputDir: 'dist',
     lintOnSave: true,
     productionSourceMap: false,
-    configureWebpack: { // webpack 配置
-        output: { // 输出重构  打包编译后的 文件名称
+    configureWebpack: {
+        // webpack 配置
+        output: {
+            // 输出重构  打包编译后的 文件名称
             filename: `js/[name].js?${Math.random()}`,
             chunkFilename: `js/[name].js?${Math.random()}`
         }
@@ -30,6 +32,6 @@ module.exports = {
         //         changOrigin: true
         //     }
         // },
-        before: app => {}
+        before: (app) => {}
     }
 }
