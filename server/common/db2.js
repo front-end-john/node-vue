@@ -3,29 +3,29 @@ mongoose.connect('mongodb://localhost:27017/node-vue')
 
 let conn
 
-function hanleError() {
+const hanleError = () => {
     conn = mongoose.connection
     const Schema = mongoose.Schema
-    conn.on('error', function() {
+    conn.on('error', () => {
         console.error.bind(console, 'connection error')
     })
-    conn.once('open', function() {
+    conn.once('open', () => {
         console.log('database open success!')
     })
-    conn.on('connected', function() {
+    conn.on('connected', () => {
         console.log('database connected success!')
     })
-    conn.on('disconnected', function() {
+    conn.on('disconnected', () => {
             console.log('database disconnected!')
         })
         /* use schema 面向对象编程*/
-    var userSchema = new Schema({
+    const userSchema = new Schema({
             name: String,
             password: String
         })
-        /*var User = mongoose.model('User', userSchema);
+        /*const User = mongoose.model('User', userSchema);
 
-    var cat = new User({
+    const cat = new User({
         name: 'hello cat!',
         password: '1111'
     });
@@ -36,8 +36,8 @@ function hanleError() {
         ? 'My name is ' + this.name : 'I has not name!'
         console.log(greeting);
     };
-    var User2 = mongoose.model('User2', userSchema);
-    var dogUser = new User2({name: 'dog'});
+    const User2 = mongoose.model('User2', userSchema);
+    const dogUser = new User2({name: 'dog'});
     dogUser.speak();
 
     /!*保存到数据库*!/
@@ -48,7 +48,7 @@ function hanleError() {
 
     /* query 查询*/
     // User2 为数据库的集合
-    var User2 = mongoose.model('User2', userSchema)
+    const User2 = mongoose.model('User2', userSchema)
         /*var cat = new User2({
         name: 'hello cat!',
         password: '1111'
@@ -58,10 +58,10 @@ function hanleError() {
         if (err) return console.log(err)
     })
 
-    /* var cwSchema = new Schema({
+    /* const cwSchema = new Schema({
         title: String
     });
-    var Cw = mongoose.model('Cw', cwSchema);
+    const Cw = mongoose.model('Cw', cwSchema);
 
     Cw.createCollection().then(function (collection) {
         console.log('Collection is created!');

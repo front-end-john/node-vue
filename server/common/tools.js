@@ -3,7 +3,7 @@ const moment = require('moment')
 moment.locale('zh-cn') // 使用中文
 
 // 格式化时间
-exports.formatDate = function(date, friendly) {
+exports.formatDate = (date, friendly) => {
     date = moment(date)
 
     if (friendly) {
@@ -13,6 +13,6 @@ exports.formatDate = function(date, friendly) {
     }
 }
 
-exports.validateId = function(str) {
+exports.validateId = (str) => {
     return /^[a-zA-Z0-9\-_]+$/i.test(str)
 }

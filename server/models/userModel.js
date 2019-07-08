@@ -32,10 +32,10 @@ const UserModel = function() {
         this.User2 = mongoose.model('User2', userSchema)
     }
     /*UserModel.methods.speak = function () {
-       const greeting = this.name
-           ? 'user name is ' + this.name : 'not user name!'
-       console.log(greeting);
-    };*/
+               const greeting = this.name
+                   ? 'user name is ' + this.name : 'not user name!'
+               console.log(greeting);
+            };*/
 UserModel.prototype.queryByAll = function(callback) {
     console.log('/queryByAll')
     this.User2.find({}, function(err, doc) {
