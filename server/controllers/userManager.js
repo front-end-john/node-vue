@@ -10,9 +10,8 @@ exports.queryByAll = (req, res, next) => {
 }
 
 exports.addUser = (req, res, next) => {
-    console.log('req.body:', req.body)
-        // post 参数放在body里面
-        // 发送数据到model
+    // post 参数放在body里面
+    // 发送数据到model
     const data = req.body || null // 获取body参数，传给model
     if (!data) return console.error('参数为空')
     userModel.addUser(data, (err, result) => {
@@ -22,8 +21,8 @@ exports.addUser = (req, res, next) => {
 }
 
 exports.deleteUser = (req, res, next) => {
-    console.log('req.query:', req) // delete 请求参数放在query里面
-        // 发送数据到model
+    // delete 请求参数放在query里面
+    // 发送数据到model
     const data = req.query || null
     if (!data) return console.error('参数为空')
     userModel.deleteUser(data, (err, result) => {
@@ -33,9 +32,8 @@ exports.deleteUser = (req, res, next) => {
 }
 
 exports.updateUser = (req, res, next) => {
-    console.log('req.body:', req.body)
-        // post 参数放在body里面
-        // 发送数据到model
+    // post 参数放在body里面
+    // 发送数据到model
     const data = req.body || null // 获取body参数，传给model
     if (!data) return console.error('参数为空')
     userModel.updateUser(data, (err, result) => {
@@ -45,9 +43,8 @@ exports.updateUser = (req, res, next) => {
 }
 
 exports.queryUser = (req, res, next) => {
-    console.log('req.query:', req.query)
-        // get 参数放在query里面
-        // 发送数据到model
+    // get 参数放在query里面
+    // 发送数据到model
     const data = req.query || null // 获取query参数，传给model
     if (!data) return console.error('参数为空')
     userModel.queryUser(data, (err, result) => {
