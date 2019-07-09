@@ -1,8 +1,8 @@
 <template>
 	<div class="home">
-		<Hello>
+		<Header>
 			<p>我来自Home组件</p>
-		</Hello>
+		</Header>
 		<div class="query">
 			<input @keyup.enter="queryUser" v-model="keyword" type="text" placeholder="请输入用户名">
 			<button @click="queryUser">查询</button>
@@ -56,7 +56,7 @@
 
 <script type="text/ecmascript-6">
 // @ is an alias to /src
-import Hello from '@/components/Hello.vue'
+import Header from '@/components/Header.vue'
 const GENDER = [
 	{
 		key: 0,
@@ -69,7 +69,7 @@ const GENDER = [
 ]
 const SEX_ARR = GENDER.map((item) => item.value)
 export default {
-	name: 'home',
+	name: 'Home',
 	data() {
 		return {
 			gender: GENDER,
@@ -162,7 +162,7 @@ export default {
 		}
 	},
 	components: {
-		Hello
+		Header
 	}
 }
 </script>
