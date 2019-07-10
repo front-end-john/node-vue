@@ -15,6 +15,8 @@
 
 [MongoDB 设置环境变量与设置成 Windows 服务](https://blog.csdn.net/lxd8731247769/article/details/51201024)
 
+[MongoDB 数据库安装及配置环境(windows10 系统)](https://www.cnblogs.com/tim100/p/6721415.html)
+
 #### 命令行下运行 MongoDB 服务器
 
 > 配置 MongoDB 服务器从 bin 目录中执行 mongod.exe 文件：
