@@ -1,6 +1,10 @@
 const fs = require('fs')
-const readFiles = require('../common/readFiles')
+    // const readFiles = require('../common/readFiles')
 const path = require('path')
+const async = require('async')
+    // const EventProxy = require('eventproxy')
+    // const ep = new EventProxy()
+
 const getFileType = (extName) => {
     let type = ''
     switch (extName) {
@@ -39,10 +43,13 @@ class FileSystemModal {
 
     getFile({ dir }, callback) {
         dir = `/${dir}`
-        const files = fs.readdirSync(dir)
+        fs.readdir(dir, (err, files) => {
+            if (err) return callback(err)
+            this.readdirCallback(dir, files, callback)
+        })
+    }
 
-        if (!files) return callback('readdirSync err')
-
+    readdirCallback(dir, files, callback) {
         const fileList = files.map((item) => {
             const info = fs.statSync(`${dir}/${item}`)
             let fileType = ''
@@ -68,7 +75,6 @@ class FileSystemModal {
             }
         })
         callback(null, fileList)
-        console.log('目录：', dir)
     }
 }
 
