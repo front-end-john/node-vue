@@ -2,8 +2,13 @@
 	<div class="view file">
 		<Header :title="'文件系统'">
 			<div class="form">
-				<label>D:/</label>
-				<input type="text" v-model="currentPath" placeholder="请输入D盘文件夹路径" @keyup.enter="submit">
+				{{currentDrive}}:/
+				<input
+					type="text"
+					v-model="currentPath"
+					:placeholder="`请输入${currentDrive}盘文件夹路径`"
+					@keyup.enter="submit"
+				>
 				<button @click="submit">提交</button>
 				<button class="btn-back" v-if="backPath" @click="handleBack">返回上一级</button>
 			</div>
@@ -35,6 +40,7 @@ export default {
 	name: 'File',
 	data() {
 		return {
+			currentDrive: 'D',
 			backPath: '',
 			currentPath: '',
 			fileList: [],
@@ -45,7 +51,7 @@ export default {
 	},
 	methods: {
 		submit() {
-			this.currentPath && this.getFile(this.currentPath)
+			this.getFile(this.currentPath)
 		},
 		scrollFn(direction) {
 			this.moveTime = 0.5
@@ -62,9 +68,16 @@ export default {
 			}
 		},
 		async getFile(dir) {
+			if (!dir) {
+				alert(`请输入${this.currentDrive}盘文件夹路径`)
+				return
+			}
 			// 这里用try catch包裹，请求失败的时候就执行catch里的
 			try {
-				const { result } = await this.$api.fileSystem.getFile({ dir })
+				const { result } = await this.$api.fileSystem.getFile({
+					drive: this.currentDrive,
+					dir
+				})
 				this.fileList = result
 				this.isShow = true
 			} catch (e) {

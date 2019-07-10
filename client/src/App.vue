@@ -41,10 +41,15 @@ button, input, select {
   font-weight: 500;
   padding: 12px 20px;
   font-size: 14px;
+  border-radius: 4px;
 }
 
 input, select {
   width: 150px;
+
+  &:focus {
+    border: 1px solid #409EFF;
+  }
 }
 
 button {
