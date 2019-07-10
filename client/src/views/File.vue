@@ -1,7 +1,12 @@
 <template>
 	<div class="view file">
-		<Header :title="`/${currentPath}`">
-			<button class="btn-back" v-if="backPath" @click="handleBack">返回上一级</button>
+		<Header :title="'文件系统'">
+			<div class="form">
+				<label>D:/</label>
+				<input type="text" v-model="currentPath" placeholder="请输入D盘文件夹路径" @keyup.enter="submit">
+				<button @click="submit">提交</button>
+				<button class="btn-back" v-if="backPath" @click="handleBack">返回上一级</button>
+			</div>
 		</Header>
 		<div class="content" v-scroll="scrollFn" ref="content">
 			<div
@@ -30,7 +35,6 @@ export default {
 	name: 'File',
 	data() {
 		return {
-			dir: 'home',
 			backPath: '',
 			currentPath: '',
 			fileList: [],
@@ -39,13 +43,11 @@ export default {
 			isShow: false
 		}
 	},
-	created() {
-		this.currentPath = this.dir
-		this.getFile(this.dir)
-	},
 	methods: {
+		submit() {
+			this.currentPath && this.getFile(this.currentPath)
+		},
 		scrollFn(direction) {
-			console.log('direction：', direction)
 			this.moveTime = 0.5
 			if (direction === 'down') {
 				const contentH = this.$refs.content.offsetHeight
@@ -69,27 +71,29 @@ export default {
 				console.log('catch -> e:', e)
 			}
 		},
+		hide() {
+			this.moveY = 0
+			this.moveTime = 0
+			this.isShow = false
+		},
 		handleBack() {
 			this.getFile(this.backPath)
 			this.currentPath = this.backPath
 			const arr = this.backPath.split('/')
 			arr.pop() // 删除数组最后一个元素
 			this.backPath = arr.length ? arr.join('/') : ''
-			this.moveY = 0
-			this.moveTime = 0
-			this.isShow = false
+			this.hide()
 		},
 		handleClick({ fileType, name }) {
 			switch (fileType) {
 				case 'folder':
+					this.hide()
 					this.backPath = this.currentPath
 					this.currentPath = `${this.currentPath}/${name}`
 					this.getFile(this.currentPath)
 					break
 				default:
-					// alert(`是否打开该${fileType}文件？`)
-					console.log(`file:///D:/${this.currentPath}/${name}`)
-					window.open(`file:///D:/${this.currentPath}/${name}`)
+					alert(`是否打开该${fileType}文件？`)
 					break
 			}
 		}
@@ -101,6 +105,20 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .file {
+	.form {
+		margin-top: 20px;
+
+		& > input {
+			margin: 0 5px;
+		}
+
+		& > .btn-back {
+			margin-left: 5px;
+			background: rgb(255, 85, 98);
+			color: #fff;
+		}
+	}
+
 	.main {
 		padding-top: 30px;
 

@@ -1,7 +1,7 @@
 <template>
 	<div class="view home">
 		<Header :title="'Home'">
-			<p>tre</p>
+			<p>test</p>
 		</Header>
 		<div class="content">
 			<div class="main">

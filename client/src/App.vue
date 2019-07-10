@@ -21,6 +21,41 @@ html, body {
   font-size: 14px;
 }
 
+a {
+  text-decoration: none;
+  display: block;
+}
+
+button, input, select {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+
+input, select {
+  width: 150px;
+}
+
+button {
+  cursor: pointer;
+
+  &:hover {
+    color: #409eff;
+    background: #ecf5ff;
+  }
+}
+
 ul, li {
   list-style: none;
 }
@@ -44,21 +79,25 @@ ul, li {
 }
 
 #nav {
+  padding-top: 40px;
   min-height: 100%;
   width: 150px;
   position: fixed;
   top: 0;
   bottom: 0;
-  padding: 30px;
   background: #f0f0f0;
 
   a {
     font-weight: bold;
     color: #2c3e50;
-    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 30px;
 
     &.router-link-exact-active {
       color: #42b983;
+      background: #f7f7f7;
     }
   }
 }

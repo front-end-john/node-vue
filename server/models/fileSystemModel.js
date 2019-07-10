@@ -8,11 +8,11 @@ const getFileType = (extName) => {
         case 'png':
         case 'psd':
         case 'txt':
-        case 'zip':    
+        case 'zip':
         case 'pdf':
         case 'ai':
-        case 'gif':        
-        case extName.includes('ppt'): 
+        case 'gif':
+        case extName.includes('ppt'):
         case extName.includes('htm'):
             type = extName
             break
@@ -22,12 +22,12 @@ const getFileType = (extName) => {
             break
         case 'mp3':
             type = 'mp'
-            break    
+            break
         case extName.includes('doc'):
             type = 'word'
-            break    
-        case extName.includes('xsl'): 
-            type = 'excel'    
+            break
+        case extName.includes('xsl'):
+            type = 'excel'
         default:
             type = 'white'
             break
@@ -39,7 +39,8 @@ class FileSystemModal {
 
     getFile({ dir }, callback) {
         dir = `/${dir}`
-        let files = fs.readdirSync(dir)
+        const files = fs.readdirSync(dir)
+
         if (!files) return callback('readdirSync err')
 
         const fileList = files.map((item) => {

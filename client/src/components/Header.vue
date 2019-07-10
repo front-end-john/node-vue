@@ -13,17 +13,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.header {
-  & > .btn-back {
-    margin-left: 30px;
-    margin-top: 20px;
-    cursor: pointer;
-    border: none;
-    outline: 0;
-    background: rgb(255, 85, 98);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-  }
-}
 </style>
