@@ -1,55 +1,59 @@
 <template>
-	<div class="home">
-		<Header>
-			<p>我来自Home组件</p>
+	<div class="view home">
+		<Header :title="'Home'">
+			<p>tre</p>
 		</Header>
-		<div class="query">
-			<input @keyup.enter="queryUser" v-model="keyword" type="text" placeholder="请输入用户名">
-			<button @click="queryUser">查询</button>
-		</div>
-		<div class="register">
-			<h1>新增/修改用戶</h1>
-			<div class="form">
-				<div>
-					<input ref="name" type="text" @keyup.enter="addUser" placeholder="請輸入姓名" v-model="user.name">
+		<div class="content">
+			<div class="main">
+				<div class="query">
+					<input @keyup.enter="queryUser" v-model="keyword" type="text" placeholder="请输入用户名">
+					<button @click="queryUser">查询</button>
 				</div>
-				<div class="password">
-					<input
-						ref="password"
-						type="password"
-						@keyup.enter="addUser"
-						placeholder="請輸入密碼"
-						v-model="user.password"
-					>
+				<div class="user-info">
+					<h1>新增/修改用戶</h1>
+					<div class="form">
+						<div>
+							<input ref="name" type="text" @keyup.enter="addUser" placeholder="請輸入姓名" v-model="user.name">
+						</div>
+						<div class="password">
+							<input
+								ref="password"
+								type="password"
+								@keyup.enter="addUser"
+								placeholder="請輸入密碼"
+								v-model="user.password"
+							>
+						</div>
+						<div class="sex">
+							<select v-model="user.sex">
+								<option v-for="item in gender" :key="item.key" :value="item.key">{{item.value}}</option>
+							</select>
+						</div>
+						<button @click="submit">提交</button>
+					</div>
 				</div>
-				<div class="sex">
-					<select v-model="user.sex">
-						<option v-for="item in gender" :key="item.key" :value="item.key">{{item.value}}</option>
-					</select>
+				<div class="table">
+					<ul class="head">
+						<li>ID</li>
+						<li>用户名</li>
+						<li>性别</li>
+						<li>密码</li>
+						<li>註冊時間</li>
+					</ul>
+					<ul class="list" v-if="users.length">
+						<li v-for="item in users" :key="item.id">
+							<div>{{item._id}}</div>
+							<div>{{item.name}}</div>
+							<div>{{item.sex | GENDER_TYPE}}</div>
+							<div>{{item.password}}</div>
+							<div>{{item.createTime}}</div>
+							<button @click="deleteUser(item._id)">删除</button>
+							<button @click="updateUser(item)">修改</button>
+						</li>
+					</ul>
+					<p v-else>查询记录為空</p>
 				</div>
-				<button @click="submit">提交</button>
 			</div>
-		</div>
-		<div class="table">
-			<ul class="head">
-				<li>ID</li>
-				<li>用户名</li>
-				<li>性别</li>
-				<li>密码</li>
-				<li>註冊時間</li>
-			</ul>
-			<ul class="list" v-if="users.length">
-				<li v-for="item in users" :key="item.id">
-					<div>{{item._id}}</div>
-					<div>{{item.name}}</div>
-					<div>{{item.sex | GENDER_TYPE}}</div>
-					<div>{{item.password}}</div>
-					<div>{{item.createTime}}</div>
-					<button @click="deleteUser(item._id)">删除</button>
-					<button @click="updateUser(item)">修改</button>
-				</li>
-			</ul>
-			<p v-else>查询记录為空</p>
 		</div>
 	</div>
 </template>
@@ -166,7 +170,7 @@ export default {
 	}
 }
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
 .home {
 	.table {
 		width: 1000px;
@@ -202,7 +206,7 @@ export default {
 		}
 	}
 
-	.register {
+	.user-info {
 		padding: 20px 20px 20px 0;
 
 		& > .form {

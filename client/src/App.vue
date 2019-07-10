@@ -8,6 +8,8 @@
   </div>
 </template>
 <style lang="stylus">
+$header-height = 100;
+
 * {
   margin: 0;
   padding: 0;
@@ -16,10 +18,20 @@
 
 html, body {
   height: 100%;
+  font-size: 14px;
 }
 
 ul, li {
   list-style: none;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: ' ';
+  clear: both;
+  height: 0;
 }
 
 #app {
@@ -34,7 +46,9 @@ ul, li {
 #nav {
   min-height: 100%;
   width: 150px;
-  float: left;
+  position: fixed;
+  top: 0;
+  bottom: 0;
   padding: 30px;
   background: #f0f0f0;
 
@@ -51,8 +65,29 @@ ul, li {
 
 #router-view {
   width: auto;
-  min-height: 100%;
+  height: 100%;
   margin-left: 150px;
-  padding-left: 20px;
+  padding: 20px;
+  position: relative;
+
+  & > .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: $header-height px;
+    padding: 20px;
+    background: #fff;
+  }
+
+  & > .content {
+    padding-top: $header-height px;
+    height: 100%;
+    overflow: hidden;
+
+    & > .main {
+    }
+  }
 }
 </style>

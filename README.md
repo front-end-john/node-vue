@@ -350,6 +350,8 @@ exports.connection = handleConnection
 
 [MongoDB 中文手册](https://www.mongodb.org.cn/manual/)
 
+[Mongo Shell](http://www.mongoing.com/docs/mongo.html)
+
 [mongoose 之 Model 相关的操作](https://www.jianshu.com/p/038c586c1449)
 
 [axios 常见传参方式\_axios 中 get/post/put/patch 请求](http://www.fly63.com/article/detial/1068)
